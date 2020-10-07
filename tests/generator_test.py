@@ -10,7 +10,7 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')
 
 from src import Generator
 
-augmentation_test_data = pd.read_csv('./data/augmentation_data.csv')
+augmentation_test_data = pd.read_csv('./data/test_data.csv')
 
 class GeneratorTests(unittest.TestCase):
     def test_batch(self: Any) -> Any:
