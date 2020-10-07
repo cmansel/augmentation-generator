@@ -12,7 +12,7 @@ if __name__ == "__main__":
     augmentation_directory = os.path.dirname(os.path.realpath(__file__))
     os.chdir(augmentation_directory)
 
-    augmentation_data = pd.read_csv('./data/transaction_data.csv')
+    augmentation_data = pd.read_csv('./data/test_data.csv')
 
     # Get command line inputs
     args = list(sys.argv)
