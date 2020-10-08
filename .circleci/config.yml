@@ -1,21 +1,25 @@
 version: 2.1
 
-# orbs:
-#   python: circleci/python@0.2.1
-
 jobs:
   build-and-test:
     machine: true
     steps:
       - checkout
-      # - python/load-cache
-      # - python/save-cache
       - run:
           command: docker build . --tag augmentation_generator
           name: Build
       - run:
-          command: docker run augmentation_generator
+          command: docker run augmentation_generator pylint ./src
+          name: Lint
+      - run:
+          command: docker run augmentation_generator mypy ./src
+          name: Typecheck
+      - run:
+          command: docker run augmentation_generator pytest
           name: Test
+      - run:
+          command: docker run augmentation_generator python __main__.py 1 5 29
+          name: Demo
 
 workflows:
   main:
