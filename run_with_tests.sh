@@ -13,8 +13,6 @@ echo "--------------------------------------------------"
 echo "INTEGRATIONTESTS"
 pytest
 
-cd ..
-
 echo "--------------------------------------------------"
-echo "EXAMPLE"
-python augmentation_generator $1 $2 $3
+echo "DEMO"
+python __main__.py $1 $2 $3
