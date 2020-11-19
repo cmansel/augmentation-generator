@@ -20,8 +20,10 @@ if __name__ == "__main__":
     augmentation_probability = float(args[1])
     batch_size = int(args[2])
     isolated_example_index = int(args[3])
+    augmentation_columns = args[4:]
 
-    gen_batch = Generator(data=augmentation_data, augmentation_probability=augmentation_probability, batch_size=batch_size)
+
+    gen_batch = Generator(data=augmentation_data, augmentation_columns=augmentation_columns, augmentation_probability=augmentation_probability, batch_size=batch_size)
 
     print('-----------------------------------------------------------')
     print('Batch Examples')
@@ -34,7 +36,7 @@ if __name__ == "__main__":
     print('-----------------------------------------------------------')
 
 
-    gen_isolated = Generator(data=augmentation_data, augmentation_probability=augmentation_probability, batch_size=len(augmentation_data))
+    gen_isolated = Generator(data=augmentation_data, augmentation_columns=augmentation_columns, augmentation_probability=augmentation_probability, batch_size=len(augmentation_data))
 
     print('Isolated Example')
     print(gen_isolated.next().loc[isolated_example_index])

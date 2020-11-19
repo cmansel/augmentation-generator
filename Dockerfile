@@ -9,4 +9,4 @@ RUN pip install -r requirements/prod.txt
 
 COPY . /augmentation_generator
 
-CMD [ "./run_with_tests.sh" , "1", "5", "29" ]
+CMD [ "./run_with_tests.sh" , "1", "5", "29", "amount", "description" ]

@@ -1,16 +1,25 @@
 import re
 import numpy as np # type: ignore
-from .types import AugmentationProbability, Batch
+from .types import AugmentationColumns, AugmentationProbability, Batch
 
-def augment(batch: Batch, augmentation_probability: AugmentationProbability) -> Batch:
+def augment(batch: Batch, augmentation_columns: AugmentationColumns, augmentation_probability: AugmentationProbability) -> Batch:
     '''Sample from a bernoulli distribution with the probability given to decide
     whether to apply each augmentation. If the amount or description bernoulli sample
     comes back true, then the respective augmentation is applied to the batch of data.'''
-    if sample_bernoulli(augmentation_probability):
-        batch.amount = batch.amount.map(number_augmentation)
 
-    if sample_bernoulli(augmentation_probability):
-        batch.description = batch.description.map(shuffle_augmentation)
+    for augmentation_column in augmentation_columns:
+        if sample_bernoulli(augmentation_probability):
+
+            column_type = str(batch[augmentation_column].dtype)
+
+            print('______________________COLUMN TYPE___________', column_type)
+
+            if column_type == 'float64':
+                batch[augmentation_column] = batch[augmentation_column].map(noise_augmentation)
+            elif column_type == 'object':
+                batch[augmentation_column] = batch[augmentation_column].map(shuffle_augmentation)
+            else:
+                raise Exception("Unsupported column type")
 
     return batch
 
@@ -19,7 +28,7 @@ def sample_bernoulli(augmentation_probability: AugmentationProbability) -> bool:
     probability of success.'''
     return bool(np.random.binomial(size=1, n=1, p=augmentation_probability)[0])
 
-def number_augmentation(number: float) -> float:
+def noise_augmentation(number: float) -> float:
     '''This function injects gaussian noise into the numerical value. The standard deviation is
     set so that 68% of samples will be within 20% of the actual value. There is a minimum cap at
     10% to prevent the number changing sign.'''
