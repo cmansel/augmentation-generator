@@ -12,8 +12,6 @@ def augment(batch: Batch, augmentation_columns: AugmentationColumns, augmentatio
 
             column_type = str(batch[augmentation_column].dtype)
 
-            print('______________________COLUMN TYPE___________', column_type)
-
             if column_type == 'float64':
                 batch[augmentation_column] = batch[augmentation_column].map(noise_augmentation)
             elif column_type == 'object':
