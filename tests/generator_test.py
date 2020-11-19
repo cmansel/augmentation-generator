@@ -17,7 +17,7 @@ class GeneratorTests(unittest.TestCase):
         augmentation_probability = 1
         batch_size = 5
 
-        gen_batch = Generator(data=augmentation_test_data, augmentation_probability=augmentation_probability, batch_size=batch_size)
+        gen_batch = Generator(data=augmentation_test_data, augmentation_columns=['amount', 'description'], augmentation_probability=augmentation_probability, batch_size=batch_size)
 
         batch_one = gen_batch.next()
         batch_two = gen_batch.next()
@@ -29,7 +29,7 @@ class GeneratorTests(unittest.TestCase):
         augmentation_probability = 0
         batch_size = len(augmentation_test_data)
 
-        gen_batch = Generator(data=augmentation_test_data, augmentation_probability=augmentation_probability, batch_size=batch_size)
+        gen_batch = Generator(data=augmentation_test_data, augmentation_columns=['amount', 'description'], augmentation_probability=augmentation_probability, batch_size=batch_size)
 
         batch = gen_batch.next()
 
@@ -44,7 +44,7 @@ class GeneratorTests(unittest.TestCase):
         augmentation_probability = 1
         batch_size = len(augmentation_test_data)
 
-        gen_batch = Generator(data=augmentation_test_data, augmentation_probability=augmentation_probability, batch_size=batch_size)
+        gen_batch = Generator(data=augmentation_test_data, augmentation_columns=['amount', 'description'], augmentation_probability=augmentation_probability, batch_size=batch_size)
 
         batch = gen_batch.next()
 
