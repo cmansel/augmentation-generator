@@ -1,4 +1,6 @@
 # Augmentation Generator
+[![cmansel](https://circleci.com/gh/cmansel/augmentation-generator.svg?style=shield)](<https://app.circleci.com/pipelines/github/cmansel/augmentation-generator>)
+
 This package generates augmented data from an existing dataset.
 
 Specifically, an augmentation generator can be created which produces batches of augmented data from an original dataset. Float columns in the data can be injected with gaussian noise, string columns can be shuffled.
