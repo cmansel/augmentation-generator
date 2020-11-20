@@ -15,6 +15,9 @@ Specifically, an augmentation generator can be created which produces batches of
 - Distinct words are separated by a variety of characters using a regex expression and then shuffled to make a new description, using the same words but in a new order.
 
 
+# Running the demo
+- An example script has been provided to demonstrate how the library works
+
 ## How to run using docker
 To run the tests and the example script with defaults of:
 augmentation_probability = 1,
